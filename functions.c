@@ -3,6 +3,8 @@
 #include <string.h>
 #include <locale.h>
 
+//////////////////////////////////////////////// Задание №1 ////////////////////////////////////////////////
+
 void Exercise_1(char* str)
 {
 	char alpha[100] = {""};
@@ -86,6 +88,98 @@ void Exercise_1(char* str)
 	}
 }
 
+//////////////////////////////////////////////// Задание №2 ////////////////////////////////////////////////
+
+void Exercise_2()
+{
+    struct Information
+    {
+        char Surname[100];
+        char Name[100];
+        char Patronymic[100];
+        char Gender[50];
+        char Position[200];
+        int  Mount, Year;
+    };
+
+    int n;
+
+    printf("Enter the number of people: \n");
+
+    scanf_s("%d", &n);
+
+    struct Information* list = (struct Information*)malloc(n * sizeof(struct Information));
+
+    for (int i = 1; i <= n; i++)
+    {
+        printf("Enter Surname employee number %d\n", i);
+        fscanf_s(stdin, "%s", list[i].Surname, 100);
+
+        printf("Enter Name employee number %d\n", i);
+        fscanf_s(stdin, "%s", list[i].Name, 100);
+
+        printf("Enter Patronymic employee number %d\n", i);
+        fscanf_s(stdin, "%s", list[i].Patronymic, 100);
+
+        printf("Enter Gender employee number (Note: capitalize the first letter) %d\n", i);
+        fscanf_s(stdin, "%s", list[i].Gender, 50);
+
+        printf("Enter Position employee number (Note: capitalize the first letter) %d\n", i);
+        fscanf_s(stdin, "%s", list[i].Position, 100);
+
+        printf("Enter Year employee number %d\n", i);
+        fscanf_s(stdin, "%d", &list[i].Year);
+
+        printf("Enter Mount employee number %d\n", i);
+        fscanf_s(stdin, "%d", &list[i].Mount);
+    }
+
+    int year_now, mount_now;
+
+    printf("Enter the current year:\n");
+    scanf_s("%d", &year_now);
+
+    printf("Enter the current mount:\n");
+    scanf_s("%d", &mount_now);
+
+    for (int i = 1; i <= n; i++)
+    {
+        int age = 0;
+
+        if (year_now > list[i].Year)
+        {
+            if (mount_now >= list[i].Mount)
+                age = year_now - list[i].Year;
+            else
+                age = year_now - list[i].Year - 1;
+        }
+
+        if (strcmp(list[i].Position, "Engineer") == 0)
+        {
+            if (strcmp(list[i].Gender, "Male") == 0 && age >= 65)
+            {
+                printf("Surname: %s\n", list[i].Surname);
+                printf("Name: %s\n", list[i].Name);
+                printf("Patronymic: %s\n", list[i].Patronymic);
+                printf("Gender: %s\n", list[i].Gender);
+                printf("Position: %s\n", list[i].Position);
+                printf("Year of birth: %d\n", list[i].Year);
+            }
+            if (strcmp(list[i].Gender, "Female") == 0 && age >= 60)
+            {
+                printf("Surname: %s\n", list[i].Surname);
+                printf("Name: %s\n", list[i].Name);
+                printf("Patronymic: %s\n", list[i].Patronymic);
+                printf("Gender: %s\n", list[i].Gender);
+                printf("Position: %s\n", list[i].Position);
+                printf("Year of birth: %d\n", list[i].Year);
+            }
+        }
+    }
+}
+
+
+//////////////////////////////////////////////// Задание №3 ////////////////////////////////////////////////
 
 // Я так и не смог до конца исправить это задание
 
