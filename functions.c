@@ -42,6 +42,12 @@ void Exercise_1(char* str)
 
 ////////////// Создаем строку с измененным порядком слов //////////////
 
+	/* Была идея так написать, но ответ был ни совсем верным
+	int n = strlen(str);
+
+	char* str_modified = (char*)malloc(n * sizeof(char));
+	*/
+	
 	char str_modified[300] = {""};
 
 	counter = 0;
