@@ -3,16 +3,85 @@
 #include <string.h>
 #include <locale.h>
 
-// Я так и не смог до конца исправить это задание
-
-void Exercise_3();
-
-int main()
+void Exercise_1(char* str)
 {
-   setlocale(LC_ALL, "Russian");
-   Exercise_3();
-   return 0;
+	char alpha[100] = {""};
+	char omega[100] = {""};
+
+////////////// Сохраняем первое слово //////////////
+
+	for (int i = 0; str[i] != ' '; i++)
+		alpha[i] = str[i];
+
+////////////// Считаем количество пробелов //////////////
+
+	int number_separators = 0;
+
+	for (int i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] == ' ')
+			number_separators++;
+	}
+
+////////////// Сохраняем последнее слово //////////////
+
+	int counter = 0;
+	int j = 0;
+
+	for (int i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] == ' ')
+			counter++;
+
+		if(counter == number_separators)
+		{
+			omega[j] = str[i];
+			j++;
+		}
+	}
+
+////////////// Создаем строку с измененным порядком слов //////////////
+
+	char str_modified[300] = {""};
+
+	counter = 0;
+
+	j = 0;
+
+	if (str_modified)
+	{
+		for (int i = 0; counter == 0 && omega[i] != '\0'; i++)
+		{
+			str_modified[j] = omega[i];
+			j++;
+		}
+
+		str_modified[j] = ' ';
+		j++;
+
+		for (int i = 0; str[i] != '\0'; i++)
+		{
+			if (number_separators != counter && counter != 0)
+			{
+				str_modified[j] = str[i];
+				j++;
+			}
+			if (str[i] == ' ')
+				counter++;
+		}
+
+		for (int i = 0; counter == number_separators && alpha[i] != '\0'; i++)
+		{
+			str_modified[j] = alpha[i];
+			j++;
+		}
+
+		printf("%s", str_modified);
+	}
 }
+
+
+// Я так и не смог до конца исправить это задание
 
 void Exercise_3()
 {
